@@ -16,5 +16,15 @@ namespace mini_program
         {
             InitializeComponent();
         }
+
+        private void tsmiExit_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void tsmiAbout_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Программа создана по мотивам курса \"С#. Мини-программы\" от GeekBrains.\nАвтор: Павел.Р", "О программе");
+        }
     }
 }
