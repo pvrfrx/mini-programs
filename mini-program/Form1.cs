@@ -49,7 +49,40 @@ namespace mini_program
 
         private void btnGenerate_Click(object sender, EventArgs e)
         {
-            lblRandom.Text = rand.Next(Convert.ToInt32(nudFrom.Value), Convert.ToInt32(nudTo.Value) + 1).ToString();
+            int i = 0;
+            if (cbRandomNoReply.Checked)
+            {
+                while (true)
+                {
+                    lblRandom.Text = rand.Next(Convert.ToInt32(nudFrom.Value), Convert.ToInt32(nudTo.Value) + 1).ToString();
+
+                    if (tbRandom.Text.IndexOf(lblRandom.Text) == -1)
+                    {
+                        tbRandom.AppendText(lblRandom.Text + "\r\n");
+                        break;
+                    }
+                    else if (i > (nudTo.Value - nudFrom.Value + 1))
+                    {
+                        break;
+                    }
+                    i++;
+                }
+            }
+            else
+            {
+                lblRandom.Text = rand.Next(Convert.ToInt32(nudFrom.Value), Convert.ToInt32(nudTo.Value) + 1).ToString();
+                tbRandom.AppendText(lblRandom.Text + "\r\n");
+            }
+        }
+
+        private void btnRandomClear_Click(object sender, EventArgs e)
+        {
+            tbRandom.Clear();
+        }
+
+        private void btnRandomCopy_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(tbRandom.Text);
         }
     }
 }
